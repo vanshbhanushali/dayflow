@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Admin Dashboard | Dayflow</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        background: #f8fafc;
+      }
+
+      .navbar {
+        background: #0f172a;
+        padding: 16px 30px;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .navbar a {
+        color: #38bdf8;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .container {
+        padding: 30px;
+      }
+
+      h2 {
+        color: #020617;
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 20px;
+        margin-top: 30px;
+      }
+
+      .card {
+        background: white;
+        padding: 25px;
+        border-radius: 14px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      }
+
+      .card a button {
+        margin-top: 15px;
+        padding: 12px;
+        width: 100%;
+        border: none;
+        border-radius: 10px;
+        background: #0ea5e9;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .card a button:hover {
+        background: #0284c7;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <strong>Dayflow HRMS — Admin</strong>
+      <a href="{% url 'logout' %}">Logout</a>
+    </div>
+
+    <div class="container">
+      <h2>Welcome Admin 👋</h2>
+
+      <div class="cards">
+        <div class="card">
+          <h3>Leave Management</h3>
+          <p>Review and approve employee leave requests.</p>
+          <a href="{% url 'manage_leaves' %}">
+            <button>Manage Leaves</button>
+          </a>
+        </div>
+
+        <div class="card">
+          <h3>Admin Panel</h3>
+          <p>Advanced control over employees & payroll.</p>
+          <a href="/admin/" target="_blank">
+            <button>Open Admin Panel</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

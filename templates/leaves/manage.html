@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Manage Leaves</title>
+    <style>
+      body {
+        font-family: Inter, sans-serif;
+        background: #f1f5f9;
+        padding: 30px;
+      }
+
+      table {
+        width: 100%;
+        background: white;
+        border-radius: 10px;
+        border-collapse: collapse;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      th,
+      td {
+        padding: 14px;
+        text-align: left;
+        border-bottom: 1px solid #e5e7eb;
+      }
+
+      th {
+        background: #0ea5e9;
+        color: white;
+      }
+
+      a.button {
+        padding: 6px 12px;
+        border-radius: 6px;
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .approve {
+        background: #22c55e;
+      }
+      .reject {
+        background: #ef4444;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Leave Requests</h2>
+
+    <table>
+      <tr>
+        <th>Employee</th>
+        <th>Type</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+
+      {% for leave in leaves %}
+      <tr>
+        <td>{{ leave.user.email }}</td>
+        <td>{{ leave.leave_type }}</td>
+        <td>{{ leave.start_date }}</td>
+        <td>{{ leave.end_date }}</td>
+        <td>{{ leave.status }}</td>
+        <td>
+          {% if leave.status == 'Pending' %}
+          <a class="button approve" href="{% url 'approve_leave' leave.id %}"
+            >Approve</a
+          >
+          <a class="button reject" href="{% url 'reject_leave' leave.id %}"
+            >Reject</a
+          >
+          {% else %} — {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>

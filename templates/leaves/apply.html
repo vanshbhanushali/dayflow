@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Apply Leave | Dayflow</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        background: #f1f5f9;
+        padding: 40px;
+      }
+
+      .card {
+        max-width: 480px;
+        margin: auto;
+        background: white;
+        padding: 30px;
+        border-radius: 16px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+      }
+
+      h2 {
+        text-align: center;
+        color: #1e293b;
+        margin-bottom: 25px;
+      }
+
+      label {
+        font-weight: 600;
+        color: #334155;
+        display: block;
+        margin-top: 15px;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 6px;
+        border-radius: 8px;
+        border: 1px solid #cbd5e1;
+        font-family: "Inter", sans-serif;
+      }
+
+      textarea {
+        resize: none;
+      }
+
+      button {
+        margin-top: 25px;
+        width: 100%;
+        padding: 12px;
+        background: #4f46e5;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #4338ca;
+      }
+
+      .back {
+        text-align: center;
+        margin-top: 15px;
+      }
+
+      .back a {
+        text-decoration: none;
+        color: #4f46e5;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="card">
+      <h2>Apply for Leave</h2>
+
+      <form method="POST">
+        {% csrf_token %}
+
+        <label>Leave Type</label>
+        <select name="leave_type" required>
+          <option value="">Select</option>
+          <option value="Sick">Sick Leave</option>
+          <option value="Casual">Casual Leave</option>
+          <option value="Paid">Paid Leave</option>
+        </select>
+
+        <label>Start Date</label>
+        <input type="date" name="start_date" required />
+
+        <label>End Date</label>
+        <input type="date" name="end_date" required />
+
+        <label>Reason</label>
+        <textarea name="reason" rows="4" required></textarea>
+
+        <button type="submit">Submit Leave Request</button>
+      </form>
+
+      <div class="back">
+        <a href="{% url 'employee_dashboard' %}">← Back to Dashboard</a>
+      </div>
+    </div>
+  </body>
+</html>
